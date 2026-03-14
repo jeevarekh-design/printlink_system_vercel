@@ -2,7 +2,12 @@ from flask import Flask, render_template, request, redirect, session, send_from_
 import os
 from utils.db import get_db_connection, execute_query
 
-app = Flask(__name__)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, "templates"),
+    static_folder=os.path.join(BASE_DIR, "static"),
+)
 app.secret_key = os.getenv("SECRET_KEY", "printlink_secret")
 
 UPLOAD_FOLDER = "uploads"
