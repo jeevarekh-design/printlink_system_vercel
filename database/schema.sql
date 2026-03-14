@@ -1,16 +1,12 @@
--- Create database
-CREATE DATABASE IF NOT EXISTS printlink;
+-- PostgreSQL schema for Neon
 
--- Use database
-USE printlink;
-
--- Delete tables if they already exist
+-- Drop tables if they already exist (development only)
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS students;
 
 -- Students table
-CREATE TABLE students (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS students (
+    id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
@@ -18,8 +14,8 @@ CREATE TABLE students (
 );
 
 -- Orders table
-CREATE TABLE orders (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS orders (
+    id SERIAL PRIMARY KEY,
     student_name VARCHAR(100) NOT NULL,
     file_name VARCHAR(255) NOT NULL,
     copies INT NOT NULL,
